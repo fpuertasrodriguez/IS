@@ -1,5 +1,6 @@
-// mundo.cpp 
-//
+// world.cpp 
+// Francisco Puertas Rodriguez
+// fpuertasrodriguez@gmail.com
 
 #include "stdafx.h"
 #include <conio.h>
@@ -12,43 +13,52 @@
 
 int main()
 {
+	// Variable declaration 
 	char cWorld[TAM + 1];
 	int  iPosition = TAM / 2;
 	int  iPositionBullet;
 	bool bBullet = false;
 	int  iPress;
-	bool bBulletDirection = false; // false == left , true == right
+	bool bBulletDirection = false; 
 
+	// Initializaction of the world
 	for (unsigned int i = 0 ; i < TAM ; i++)
 	{
 		cWorld[i] = FIGURE_WORLD;
 	}
 	cWorld[iPosition] = FIGURE_HUMAN;
-	cWorld[TAM] = '\0';
+	cWorld[TAM]	= '\0';
 
 	printf("\n\n\n\n\n\n\n\n\n\n%s", cWorld);
 
-	while (1)
+	// Game loop
+	while (1) 
 	{
-		if (_kbhit())
+		
+		if (_kbhit()) // Check if a button has been pressed
 		{
 			iPress = _getch();
-			if (iPress == 97 && iPosition != 0) // a
+
+			// If the button pressed is 'a', the FIGURE_HUMAN moves to the left
+			if (iPress == 97 && iPosition != 0) 
 			{
 				cWorld[iPosition] = FIGURE_WORLD;
-				iPosition--;
+				--iPosition;
 				cWorld[iPosition] = FIGURE_HUMAN;
 			}
-			else if (iPress == 100 && iPosition != TAM - 1) // d
+			// If the button pressed is 'd', the FIGURE_HUMAN moves to the right
+			else if (iPress == 100 && iPosition != TAM - 1) 
 			{
 				cWorld[iPosition] = FIGURE_WORLD;
-				iPosition++;
+				++iPosition;
 				cWorld[iPosition] = FIGURE_HUMAN;
 			}
 
-			if (!bBullet)
+			// If there is no bullet in play
+			if (!bBullet) 
 			{
-				if (iPress == 113 && iPosition != 0) // q
+				// If the button pressed is 'q', the FIGURE_BULLET_LEFT moves to the left
+				if (iPress == 113 && iPosition != 0) 
 				{
 					iPositionBullet = iPosition - 1;
 					cWorld[iPositionBullet] = FIGURE_WORLD;
@@ -56,7 +66,8 @@ int main()
 					bBulletDirection = false;
 					bBullet = true;
 				}
-				else if (iPress == 101 && iPosition != TAM - 1) // e
+				// If the button pressed is 'e', the FIGURE_BULLET_RIGHT moves to the right
+				else if (iPress == 101 && iPosition != TAM - 1) 
 				{
 					iPositionBullet = iPosition + 1;
 					cWorld[iPositionBullet] = FIGURE_WORLD;
@@ -66,7 +77,9 @@ int main()
 				}
 			}
 		}
-		if (bBullet == true && (iPositionBullet == 0 || iPositionBullet == TAM - 1))
+
+		// If the bullet is in play and is in the first or last position of the world, the bullet is eliminated
+		if (bBullet == true && (iPositionBullet == 0 || iPositionBullet == TAM - 1)) 
 		{
 			bBullet = false;
 			if (bBulletDirection)
@@ -78,7 +91,8 @@ int main()
 				cWorld[0] = FIGURE_WORLD;
 			}
 		}
-		else if (bBullet == true && (iPositionBullet != 0 || iPositionBullet != TAM - 1))
+		// If the bullet is in play and is not in the first or last position of the world, the bullet moves
+		else if (bBullet == true && (iPositionBullet != 0 || iPositionBullet != TAM - 1)) 
 		{
 			if (bBulletDirection)
 			{
@@ -101,4 +115,3 @@ int main()
 	getchar();
 	return 0;
 }
-
