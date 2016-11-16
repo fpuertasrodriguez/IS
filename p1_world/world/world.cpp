@@ -41,8 +41,7 @@ int main()
 	// Game loop
 	while (1)
 	{
-
-		if (_kbhit()) // Check if a button has been pressed
+		if (_kbhit())
 		{
 			iPress = _getch();
 
