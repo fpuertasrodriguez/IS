@@ -54,7 +54,7 @@ int main()
 	}
 
 	system("cls");
-	printf("Game Over\nYour score is: %d", getScore());
+	printf("Game Over\nYour score is: %d\nPress enter to exit...", getScore());
 	getchar();
 
     return 0;

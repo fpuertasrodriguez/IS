@@ -37,3 +37,23 @@ int getScore()
 {
 	return iScore;
 }
+
+void movementInWorld(char cFigure, unsigned int & iPosition, bool direction)
+{
+	if (direction)
+	{
+		updateWorld(FIGURE_WORLD, iPosition);
+
+		++iPosition;
+
+		updateWorld(cFigure, iPosition);
+	}
+	else if (!direction)
+	{
+		updateWorld(FIGURE_WORLD, iPosition);
+
+		--iPosition;
+
+		updateWorld(cFigure, iPosition);
+	}
+}

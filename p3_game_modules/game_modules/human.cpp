@@ -17,20 +17,12 @@ void movementHuman(int iBottonPress)
 	// If the button pressed is 'a', the FIGURE_HUMAN moves to the left
 	if (iBottonPress == 97 && iPositionHuman != 0)
 	{
-		updateWorld(FIGURE_WORLD, iPositionHuman);
-
-		--iPositionHuman;
-
-		updateWorld(FIGURE_HUMAN, iPositionHuman);
+		movementInWorld(FIGURE_HUMAN, iPositionHuman, false);
 	}
 	// If the button pressed is 'd', the FIGURE_HUMAN moves to the right
 	else if (iBottonPress == 100 && iPositionHuman != TAM_WORLD - 1)
 	{
-		updateWorld(FIGURE_WORLD, iPositionHuman);
-
-		++iPositionHuman;
-
-		updateWorld(FIGURE_HUMAN, iPositionHuman);
+		movementInWorld(FIGURE_HUMAN, iPositionHuman, true);
 	}
 }
 

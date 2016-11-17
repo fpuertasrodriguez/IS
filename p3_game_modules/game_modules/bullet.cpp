@@ -69,19 +69,11 @@ void autoMovementBullet()
 	{
 		if (bBulletDirection)
 		{
-			updateWorld(FIGURE_WORLD, iPositionBullet);
-
-			iPositionBullet++;
-
-			updateWorld(FIGURE_BULLET_RIGHT, iPositionBullet);
+			movementInWorld(FIGURE_BULLET_RIGHT, iPositionBullet, bBulletDirection);
 		}
 		else
 		{
-			updateWorld(FIGURE_WORLD, iPositionBullet);
-
-			iPositionBullet--;
-
-			updateWorld(FIGURE_BULLET_LEFT, iPositionBullet);
+			movementInWorld(FIGURE_BULLET_LEFT, iPositionBullet, bBulletDirection);
 		}
 	}
 }

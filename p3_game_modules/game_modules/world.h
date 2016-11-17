@@ -13,5 +13,6 @@ void printWorld();
 void updateWorld(char cFigure, unsigned int iPosition);
 void updateScore(int iUpdateScore);
 int getScore();
+void movementInWorld(char cFigure, unsigned int & iPosition, bool direction);
 
 #endif // !__WORLD_H__

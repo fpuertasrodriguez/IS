@@ -28,22 +28,7 @@ void autoMovementEnemy()
 {
 	if (((iPositionEnemy != 0 || bEnemy) && (iPositionEnemy != TAM_WORLD - 1 || !bEnemy)))
 	{
-		if (bEnemy)
-		{
-			updateWorld(FIGURE_WORLD, iPositionEnemy);
-
-			++iPositionEnemy;
-
-			updateWorld(FIGURE_ENEMY, iPositionEnemy);
-		}
-		else if (iPositionEnemy != 0)
-		{
-			updateWorld(FIGURE_WORLD, iPositionEnemy);
-
-			--iPositionEnemy;
-
-			updateWorld(FIGURE_ENEMY, iPositionEnemy);
-		}
+		movementInWorld(FIGURE_ENEMY, (unsigned int &)iPositionEnemy, bEnemy);		
 	}
 }
 
