@@ -7,6 +7,10 @@
 #define TAM_WORLD 51
 #define FIGURE_WORLD '_'
 
+#include <vector>
+#include "bullet.h"
+#include "enemy.h"
+
 void initWorld();
 void printWorld();
 void updateWorld(char cFigure, unsigned int iPosition);

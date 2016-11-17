@@ -4,10 +4,9 @@
 
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
+#define FIGURE_ENEMY '*'
 
 #include "world.h"
-
-#define FIGURE_ENEMY '*'
 
 void initEnemy();
 void autoMovementEnemy();
