@@ -14,4 +14,3 @@ void movementHuman(int iBottonPress);
 unsigned int getPositionHuman();
 
 #endif // !__HUMAN_H__
-
