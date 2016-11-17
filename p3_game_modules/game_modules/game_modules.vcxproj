@@ -142,9 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="check_interactions.h" />
     <ClInclude Include="enemy.h" />
