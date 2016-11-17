@@ -33,9 +33,9 @@ int main()
 	{
 		cWorld[i] = FIGURE_WORLD;
 	}
-	cWorld[iPosition] = FIGURE_HUMAN;
 	cWorld[TAM] = '\0';
-
+	cWorld[iPosition] = FIGURE_HUMAN;
+	
 	printf("\n\n\n\n\n\n\n\n\n\n%s", cWorld);
 
 	// Game loop
@@ -113,11 +113,13 @@ int main()
 				cWorld[iPositionBullet] = FIGURE_BULLET_LEFT;
 			}
 		}
+
 		system("cls");
 		printf("\n\n\n\n\n\n\n\n\n\n%s", cWorld);
-		Sleep(200);
+		Sleep(50);
 	}
 
 	getchar();
+
 	return 0;
 }

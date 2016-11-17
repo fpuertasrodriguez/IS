@@ -17,7 +17,6 @@
 int main()
 {
 	// Variable declaration 
-
 	// World
 	char cWorld[TAM + 1];
 
@@ -45,9 +44,10 @@ int main()
 	{
 		cWorld[i] = FIGURE_WORLD;
 	}
-	cWorld[iPosition] = FIGURE_HUMAN;
+	
 	cWorld[TAM] = '\0';
-
+	cWorld[iPosition] = FIGURE_HUMAN;
+	
 	printf("\n\n\n\n\n\n\n\n\n\n%s", cWorld);
 
 	// Game loop
@@ -142,11 +142,13 @@ int main()
 		if (iPositionEnemy == -1)
 		{
 			iPositionEnemy = rand() % 2;
+
 			if (iPositionEnemy == 1)
 			{
 				iPositionEnemy = TAM - 1;
 				bEnemy = false;
 			}
+
 			cWorld[iPositionEnemy] = FIGURE_ENEMY;
 		}
 		// Movement os the enemy
@@ -176,9 +178,11 @@ int main()
 		printf("\n\nScore: %d\n\n\n\n\n\n\n\n%s", score, cWorld);
 		Sleep(50);
 	}
+
 	system("cls");
 	printf("\nGAME OVER\n");
 	printf("\nScore: %d\n", score);
 	getchar();
+
 	return 0;
 }
