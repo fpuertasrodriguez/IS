@@ -9,24 +9,29 @@
 
 #include "world.h"
 #include "human.h"
+#include <list>
 
 class CBullet
 {
 	public:
 		CBullet();
 		~CBullet();
-		void shootBullet(int iBottonPress);
 		void setBullet(bool bUpdateBullet);
 		bool getBullet();
 		void autoMovementBullet();
-		void setPositionBullet(int iNum);
+		void setPositionBullet(unsigned int uNum);
 		unsigned int getPositionBullet();
+		void setDirectionBullet(bool bDirection);
+		bool getDirectionBullet();
 
 	private:
 		bool bBullet = false;
-		bool bBulletDirection = false;
-		unsigned int iPositionBullet;
+		bool bDirectionBullet = false;
+		unsigned int uPositionBullet;
 };
 
+extern std::list<CBullet> lBullet;
+
+void createBullet(unsigned int uBottonPress);
 
 #endif // !__BULLET_H__

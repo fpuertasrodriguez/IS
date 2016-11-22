@@ -14,9 +14,9 @@ int main()
 {
 	// Variable declaration 
 	bool bGame = true;
-	unsigned int iPress;
-	CBullet oBullet;
-	CEnemy oEnemy;
+	unsigned int uPress;
+	unsigned int uRespawnTime = TAM_WORLD / 2;
+	unsigned int uRechargeTime = 0;
 
 	initWorld();
 	initHuman();
@@ -25,35 +25,43 @@ int main()
 
 	while (bGame)
 	{
-		oEnemy.initEnemy();
-
+		if (uRespawnTime >= TAM_WORLD / 8)
+		{
+			uRespawnTime = 0;
+			createEnemy();
+		}
+			
 		if (_kbhit())
 		{
-			iPress = _getch();
+			uPress = _getch();
 
-			if (iPress == 97 || iPress == 100)
+			if (uPress == 97 || uPress == 100)
 			{
-				movementHuman(iPress);
+				movementHuman(uPress);
 			}
-			else if (iPress == 113 || iPress == 101)
+			else if (uPress == 113 || uPress == 101)
 			{
-				oBullet.shootBullet(iPress);
+				if (uRechargeTime > 5)
+				{
+					uRechargeTime = 0;
+					createBullet(uPress);
+				}
 			}
 		}
 
-		updateWeather();
-		oBullet.autoMovementBullet();
-		oEnemy.autoMovementEnemy();
-
-		bGame = checkDeath(oEnemy);
-
-		checkKillEnemy(oBullet, oEnemy);
+		bGame = updateWorld();
 
 		Sleep(50);
 		system("cls");
 		printf("Score: %d", getScore());
 		printWorld();
+
+		++uRechargeTime;
+		++uRespawnTime;
 	}
+
+	lEnemy.clear();
+	lBullet.clear();
 
 	system("cls");
 	printf("Game Over\nYour score is: %d\nPress enter to exit...", getScore());

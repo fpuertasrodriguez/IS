@@ -4,9 +4,9 @@
 
 #include "stdafx.h"
 #include "world.h"
-
+#include "check_interactions.h"
 static char cWorld[TAM_WORLD + 1];
-static int iScore = 0;
+static unsigned int uScore = 0;
 
 void initWorld()
 {
@@ -28,14 +28,14 @@ void updateWorld(char cFigure, unsigned int iPosition)
 	cWorld[iPosition] = cFigure;
 }
 
-void updateScore(int iUpdateScore)
+void updateScore(unsigned int uUpdateScore)
 {
-	iScore = iScore + iUpdateScore;
+	uScore = uScore + uUpdateScore;
 }
 
-int getScore()
+unsigned int getScore()
 {
-	return iScore;
+	return uScore;
 }
 
 void movementInWorld(char cFigure, unsigned int & iPosition, bool direction)
@@ -58,11 +58,43 @@ void movementInWorld(char cFigure, unsigned int & iPosition, bool direction)
 	}
 }
 
-void managementEnemy(CEnemy oEnemy)
+bool updateWorld()
 {
-	vEnemy.push_back(oEnemy);
-	for (std::vector<CEnemy>::iterator it = vEnemy.begin(); it != vEnemy.end(); ++it)
+	bool bGame = true;
+	std::list<CEnemy>::iterator itEnemy = lEnemy.begin();
+	std::list<CBullet>::iterator itBullet = lBullet.begin();
+
+	while (itBullet != lBullet.end())
 	{
-		printf("\n%d",it->getPositionEnemy());
+		itBullet->autoMovementBullet();
+		itBullet++;
 	}
+
+	while (itEnemy != lEnemy.end())
+	{
+		if (bGame)
+		{
+			itEnemy->autoMovementEnemy();
+			bGame = checkDeath(*itEnemy);
+
+			itBullet = lBullet.begin();
+
+			while (itBullet != lBullet.end())
+			{
+				checkKillEnemy(itBullet, itEnemy);
+				itBullet++;
+			}
+
+			itEnemy++;
+		}
+		else
+		{
+			itEnemy++;
+		}
+	}
+
+	updateList();
+	updateWeather();
+
+	return bGame;
 }

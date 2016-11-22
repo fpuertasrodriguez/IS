@@ -9,7 +9,7 @@
 #include "world.h"
 
 void initHuman();
-void movementHuman(int iBottonPress);
+void movementHuman(unsigned int uBottonPress);
 unsigned int getPositionHuman();
 
 #endif // !__HUMAN_H__

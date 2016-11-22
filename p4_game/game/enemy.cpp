@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "enemy.h"
 
-std::vector<CEnemy> vEnemy;
+std::list<CEnemy> lEnemy;
 
 CEnemy::CEnemy()
 {
@@ -17,19 +17,22 @@ CEnemy::~CEnemy()
 {
 }
 
-void CEnemy::initEnemy()
+void createEnemy()
 {
-	if (iPositionEnemy == -1)
+	CEnemy oEnemy;
+	
+	if (oEnemy.getPositionEnemy() == -1)
 	{
-		iPositionEnemy = rand() % 2;
+		oEnemy.setPositionEnemy(rand() % 2);
 
-		if (iPositionEnemy == 1)
+		if (oEnemy.getPositionEnemy() == 1)
 		{
-			iPositionEnemy = TAM_WORLD - 1;
-			bEnemy = false;
+			oEnemy.setPositionEnemy(TAM_WORLD - 1);
+			oEnemy.setEnemy(false);
 		}
-
-		updateWorld(FIGURE_ENEMY, iPositionEnemy);
+		
+		updateWorld(FIGURE_ENEMY, oEnemy.getPositionEnemy());
+		lEnemy.push_back(oEnemy);
 	}
 }
 
@@ -37,7 +40,7 @@ void CEnemy::autoMovementEnemy()
 {
 	if (((iPositionEnemy != 0 || bEnemy) && (iPositionEnemy != TAM_WORLD - 1 || !bEnemy)))
 	{
-		movementInWorld(FIGURE_ENEMY, (unsigned int &)iPositionEnemy, bEnemy);		
+		movementInWorld(FIGURE_ENEMY, (unsigned int &)iPositionEnemy, bEnemy);
 	}
 }
 

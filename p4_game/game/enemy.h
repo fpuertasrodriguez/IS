@@ -7,13 +7,13 @@
 #define FIGURE_ENEMY '*'
 
 #include "world.h"
+#include <list>
 
 class CEnemy
 {
 	public:
 		CEnemy();
 		~CEnemy();
-		void initEnemy();
 		void autoMovementEnemy();
 		int getPositionEnemy();
 		void setPositionEnemy(int iNum);
@@ -24,6 +24,8 @@ class CEnemy
 		bool bEnemy = true;
 };
 
-extern std::vector<CEnemy> vEnemy;
+extern std::list<CEnemy> lEnemy;
+
+void createEnemy();
 
 #endif // !__ENEMY_H__

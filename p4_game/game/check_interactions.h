@@ -10,7 +10,8 @@
 #include "enemy.h"
 #include "bullet.h"
 
-void checkKillEnemy(CBullet & oBullet, CEnemy & oEnemy);
-bool checkDeath(CEnemy & oEnemy);
+void checkKillEnemy(std::list<CBullet>::iterator oBullet, std::list<CEnemy>::iterator oEnemy);
+bool checkDeath(CEnemy oEnemy);
+void updateList();
 
 #endif // !__CHECK_INTERACTIONS__
