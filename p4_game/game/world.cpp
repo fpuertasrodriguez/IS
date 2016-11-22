@@ -5,10 +5,10 @@
 #include "stdafx.h"
 #include "world.h"
 #include "check_interactions.h"
-static char cWorld[TAM_WORLD + 1];
-static unsigned int uScore = 0;
 
-void initWorld()
+class CWorld oWorld;
+
+CWorld::CWorld()
 {
 	for (unsigned int i = 0; i < TAM_WORLD; i++)
 	{
@@ -16,29 +16,35 @@ void initWorld()
 	}
 
 	cWorld[TAM_WORLD] = '\0';
+	uScore = 0;
 }
 
-void printWorld()
+CWorld::~CWorld()
+{
+
+}
+
+void CWorld::printWorld()
 {
 	printf("\n\n\n\n\n\n\n\n\n\n%s", cWorld);
 }
 
-void updateWorld(char cFigure, unsigned int iPosition)
+void CWorld::updateWorld(char cFigure, unsigned int iPosition)
 {
 	cWorld[iPosition] = cFigure;
 }
 
-void updateScore(unsigned int uUpdateScore)
+void CWorld::updateScore(unsigned int uUpdateScore)
 {
 	uScore = uScore + uUpdateScore;
 }
 
-unsigned int getScore()
+unsigned int CWorld::getScore()
 {
 	return uScore;
 }
 
-void movementInWorld(char cFigure, unsigned int & iPosition, bool direction)
+void CWorld::movementInWorld(char cFigure, unsigned int & iPosition, bool direction)
 {
 	if (direction)
 	{
@@ -58,7 +64,7 @@ void movementInWorld(char cFigure, unsigned int & iPosition, bool direction)
 	}
 }
 
-bool updateWorld()
+bool CWorld::updateWorld()
 {
 	bool bGame = true;
 	std::list<CEnemy>::iterator itEnemy = lEnemy.begin();

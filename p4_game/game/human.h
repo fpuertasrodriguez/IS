@@ -8,8 +8,19 @@
 
 #include "world.h"
 
-void initHuman();
-void movementHuman(unsigned int uBottonPress);
-unsigned int getPositionHuman();
+class CHuman
+{
+	public:
+		CHuman();
+		~CHuman();
+		//void initHuman();
+		void movementHuman(unsigned int uBottonPress);
+		unsigned int getPositionHuman();
+
+	private:
+		unsigned int uPositionHuman;
+};
+
+extern class CHuman oHuman;
 
 #endif // !__HUMAN_H__

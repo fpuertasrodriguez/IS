@@ -9,9 +9,6 @@
 #define FIGURE_RAIN_END '.'
 
 #include "world.h"
-#include "bullet.h"
-#include "enemy.h"
-#include "human.h"
 
 void updateWeather();
 

@@ -18,9 +18,6 @@ int main()
 	unsigned int uRespawnTime = TAM_WORLD / 2;
 	unsigned int uRechargeTime = 0;
 
-	initWorld();
-	initHuman();
-
 	srand(static_cast<unsigned int>(time(NULL)));
 
 	while (bGame)
@@ -37,7 +34,7 @@ int main()
 
 			if (uPress == 97 || uPress == 100)
 			{
-				movementHuman(uPress);
+				oHuman.movementHuman(uPress);
 			}
 			else if (uPress == 113 || uPress == 101)
 			{
@@ -49,12 +46,12 @@ int main()
 			}
 		}
 
-		bGame = updateWorld();
+		bGame = oWorld.updateWorld();
 
 		Sleep(50);
 		system("cls");
-		printf("Score: %d", getScore());
-		printWorld();
+		printf("Score: %d", oWorld.getScore());
+		oWorld.printWorld();
 
 		++uRechargeTime;
 		++uRespawnTime;
@@ -64,7 +61,7 @@ int main()
 	lBullet.clear();
 
 	system("cls");
-	printf("Game Over\nYour score is: %d\nPress enter to exit...", getScore());
+	printf("Game Over\nYour score is: %d\nPress enter to exit...", oWorld.getScore());
 	getchar();
 
 	return 0;

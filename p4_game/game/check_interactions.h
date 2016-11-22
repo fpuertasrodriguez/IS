@@ -6,7 +6,6 @@
 #define __CHECK_INTERACTIONS__
 
 #include "world.h"
-#include "human.h"
 #include "enemy.h"
 #include "bullet.h"
 

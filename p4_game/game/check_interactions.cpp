@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 #include "check_interactions.h"
+#include "human.h"
+#include "world.h"
 
 void checkKillEnemy(std::list<CBullet>::iterator oBullet, std::list<CEnemy>::iterator oEnemy)
 {
@@ -12,18 +14,18 @@ void checkKillEnemy(std::list<CBullet>::iterator oBullet, std::list<CEnemy>::ite
 	
 	if ((abs(static_cast<int>(iPositionEnemy - iPositionBullet)) <= 1) && (oBullet->getBullet() == true))
 	{
-		updateWorld(FIGURE_WORLD, iPositionBullet);
-		updateWorld(FIGURE_WORLD, iPositionEnemy);
+		oWorld.updateWorld(FIGURE_WORLD, iPositionBullet);
+		oWorld.updateWorld(FIGURE_WORLD, iPositionEnemy);
 		oEnemy->setPositionEnemy(-1);
 		oBullet->setBullet(false);
 		oBullet->setPositionBullet(TAM_WORLD);
-		updateScore(1);
+		oWorld.updateScore(1);
 	}
 }
 
 bool checkDeath(CEnemy oEnemy)
 {
-	if ((abs(static_cast<int>(oEnemy.getPositionEnemy() - getPositionHuman())) <= 1))
+	if ((abs(static_cast<int>(oEnemy.getPositionEnemy() - oHuman.getPositionHuman())) <= 1))
 	{
 		return false;
 	}

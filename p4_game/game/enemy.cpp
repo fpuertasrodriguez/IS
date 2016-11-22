@@ -31,7 +31,7 @@ void createEnemy()
 			oEnemy.setEnemy(false);
 		}
 		
-		updateWorld(FIGURE_ENEMY, oEnemy.getPositionEnemy());
+		oWorld.updateWorld(FIGURE_ENEMY, oEnemy.getPositionEnemy());
 		lEnemy.push_back(oEnemy);
 	}
 }
@@ -40,7 +40,7 @@ void CEnemy::autoMovementEnemy()
 {
 	if (((iPositionEnemy != 0 || bEnemy) && (iPositionEnemy != TAM_WORLD - 1 || !bEnemy)))
 	{
-		movementInWorld(FIGURE_ENEMY, (unsigned int &)iPositionEnemy, bEnemy);
+		oWorld.movementInWorld(FIGURE_ENEMY, (unsigned int &)iPositionEnemy, bEnemy);
 	}
 }
 

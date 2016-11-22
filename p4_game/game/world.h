@@ -11,12 +11,23 @@
 #include "enemy.h"
 #include "weather.h"
 
-void initWorld();
-void printWorld();
-void updateWorld(char cFigure, unsigned int uPosition);
-void updateScore(unsigned int uUpdateScore);
-unsigned int getScore();
-void movementInWorld(char cFigure, unsigned int & uPosition, bool direction);
-bool updateWorld();
+class CWorld
+{
+	public:
+		CWorld();
+		~CWorld();
+		void printWorld();
+		void updateWorld(char cFigure, unsigned int uPosition);
+		void updateScore(unsigned int uUpdateScore);
+		unsigned int getScore();
+		void movementInWorld(char cFigure, unsigned int & uPosition, bool direction);
+		bool updateWorld();
+
+	private:
+		char cWorld[TAM_WORLD + 1];
+		unsigned int uScore;
+};
+
+extern class CWorld oWorld;
 
 #endif // !__WORLD_H__

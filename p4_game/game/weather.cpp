@@ -18,25 +18,25 @@ void updateWeather()
 		{
 			iPositionRain[i] = rand() % TAM_WORLD;
 
-			if (abs(static_cast<int>(getPositionHuman() - iPositionRain[i])) > 3)
+			if (abs(static_cast<int>(oHuman.getPositionHuman() - iPositionRain[i])) > 3)
 			{
 				iRainMode[i] = 1;
-				updateWorld(FIGURE_RAIN_BEGIN, iPositionRain[i]);
+				oWorld.updateWorld(FIGURE_RAIN_BEGIN, iPositionRain[i]);
 			}
 		}
 		else if (iRainMode[i] == 1)
 		{
-			updateWorld(FIGURE_RAIN_INTERMEDIATE, iPositionRain[i]);
+			oWorld.updateWorld(FIGURE_RAIN_INTERMEDIATE, iPositionRain[i]);
 			iRainMode[i] = 2;
 		}
 		else if (iRainMode[i] == 2)
 		{
-			updateWorld(FIGURE_RAIN_END, iPositionRain[i]);
+			oWorld.updateWorld(FIGURE_RAIN_END, iPositionRain[i]);
 			iRainMode[i] = 3;
 		}
 		else if (iRainMode[i] == 3)
 		{
-			updateWorld(FIGURE_WORLD, iPositionRain[i]);
+			oWorld.updateWorld(FIGURE_WORLD, iPositionRain[i]);
 			iRainMode[i] = 0;
 		}
 	}

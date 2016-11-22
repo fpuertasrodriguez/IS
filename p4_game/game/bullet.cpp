@@ -3,7 +3,7 @@
 // fpuertasrodriguez@gmail.com
 
 #include "stdafx.h"
-#include "bullet.h"
+#include "world.h"
 
 std::list<CBullet> lBullet;
 
@@ -24,14 +24,14 @@ void createBullet(unsigned int uBottonPress)
 	
 	if (!oBullet.getBullet())
 	{
-		unsigned int uPositionHuman = getPositionHuman();
+		unsigned int uPositionHuman = oHuman.getPositionHuman();
 
 		// If the button pressed is 'q', the FIGURE_BULLET_LEFT moves to the left
 		if (uBottonPress == 113 && uPositionHuman != 0)
 		{
 			uPositionHuman = uPositionHuman - 1;
 
-			updateWorld(FIGURE_BULLET_LEFT, uPositionHuman);
+			oWorld.updateWorld(FIGURE_BULLET_LEFT, uPositionHuman);
 
 			oBullet.setDirectionBullet(false);
 			oBullet.setBullet(true);
@@ -41,7 +41,7 @@ void createBullet(unsigned int uBottonPress)
 		{
 			uPositionHuman = uPositionHuman + 1;
 
-			updateWorld(FIGURE_BULLET_RIGHT, uPositionHuman);
+			oWorld.updateWorld(FIGURE_BULLET_RIGHT, uPositionHuman);
 
 			oBullet.setDirectionBullet(true);
 			oBullet.setBullet(true);
@@ -70,22 +70,22 @@ void CBullet::autoMovementBullet()
 
 		if (bDirectionBullet)
 		{
-			updateWorld(FIGURE_WORLD, TAM_WORLD - 1);
+			oWorld.updateWorld(FIGURE_WORLD, TAM_WORLD - 1);
 		}
 		else
 		{
-			updateWorld(FIGURE_WORLD, 0);
+			oWorld.updateWorld(FIGURE_WORLD, 0);
 		}
 	}
 	else if (bBullet == true && (uPositionBullet != 0 || uPositionBullet != TAM_WORLD - 1))
 	{
 		if (bDirectionBullet)
 		{
-			movementInWorld(FIGURE_BULLET_RIGHT, uPositionBullet, bDirectionBullet);
+			oWorld.movementInWorld(FIGURE_BULLET_RIGHT, uPositionBullet, bDirectionBullet);
 		}
 		else
 		{
-			movementInWorld(FIGURE_BULLET_LEFT, uPositionBullet, bDirectionBullet);
+			oWorld.movementInWorld(FIGURE_BULLET_LEFT, uPositionBullet, bDirectionBullet);
 		}
 	}
 }
